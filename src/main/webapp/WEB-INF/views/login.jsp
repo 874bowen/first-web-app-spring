@@ -12,10 +12,14 @@ java.util.Date date = new java.util.Date();
 %>
 <body>
 
-My First JSP!!
+<p><font color="red">${errorMessage}</font></p>
 <h2>Hello ${name}, your password is ${password}, the date <%=date%></h2>
 <form action="/login.do" method="post">
-Enter name <input type="text" name="name"/><input type="submit" value="login"/>
+Enter name <input type="text" name="name"/>
+Enter password <input type="password" name="password"/>
+<input type="submit" value="login"/>
 </form>
 </body>
 </html>
+<!-- Valid User -> welcome.jsp -->
+<!-- Invalid User -> login.jsp -->
