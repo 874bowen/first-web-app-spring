@@ -8,6 +8,6 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 <p><font color="green">${success}</font></p>
-Welcome, ${name} 
+Welcome, ${name} , password is ${password}
 </body>
 </html>
