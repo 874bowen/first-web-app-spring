@@ -14,7 +14,7 @@ java.util.Date date = new java.util.Date();
 
 <p><font color="red">${errorMessage}</font></p>
 <h2>Hello ${name}, your password is ${password}, the date <%=date%></h2>
-<form action="/login.do" method="post">
+<form action="/spring-mvc/login" method="post">
 Enter name <input type="text" name="name"/>
 Enter password <input type="password" name="password"/>
 <input type="submit" value="login"/>
