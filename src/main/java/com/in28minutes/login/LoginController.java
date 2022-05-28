@@ -1,11 +1,12 @@
-package com.in28minutes.springmvc;
+package com.in28minutes.login;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.in28minutes.login.UserValidationService;
 
 /* spring mvc
  * DispatcherServlet -> Front Controller
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller // this tells spring that this a controller => handles web requests
 public class LoginController {
 	
+	UserValidationService loginService = new UserValidationService();
 	// Mapping this url to this method by default it handles all requests unless restricted
 	// with by adding them method= after value=
 	@RequestMapping(value="/login", method = RequestMethod.GET)
@@ -36,11 +38,17 @@ public class LoginController {
 	public String handleLoginPage(@RequestParam String name, 
 			@RequestParam String password, ModelMap model) {
 		// here to get the values from user we use @RequestParam -> no specifying attribute
+		if (!loginService.isUserValid(name, password)) {
+			model.put("errorMessage", "Invalid Credentials!");
+			return "login"; 
+		}
 		model.put("name", name); // now we've sent it to the View
 		model.put("password", password);
+		model.put("success", "You are logged in successfully!");
 		System.out.println(name); // showing in the console but not in the browser
 		// model is used to pass the information between the Controller and the View by adding parameter 
 		// ModelMap model
-		return "welcome"; 
+		return "welcome";
+		
 	}
 }
